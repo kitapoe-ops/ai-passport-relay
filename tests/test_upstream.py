@@ -69,6 +69,21 @@ def test_transcript_and_run_parsers():
         parse_run_uuid({"success": True})
 
 
+def test_transcript_asrhkchat_live_shape():
+    # Real asrhkchat.kitahim.uk /api/stt payload (captured 2026-11-06):
+    # the transcript lives at data.result, not data.transcript/data.text.
+    payload = {
+        "code": 200,
+        "message": "识别成功",
+        "data": {
+            "result": "你好，我想問下今日香港天氣好唔好？",
+            "status_desc": "STATUS_OK",
+            "request_id": "36da6171-bbf3-4fec-a162-b253d6e51d04",
+        },
+    }
+    assert parse_transcript(payload) == "你好，我想問下今日香港天氣好唔好？"
+
+
 def test_token_expired_classification():
     assert UpstreamError("stt", 503, "Token Expired").token_expired
     assert UpstreamError("llm", 503, '{"error":"token expired"}').token_expired

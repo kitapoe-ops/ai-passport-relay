@@ -101,7 +101,7 @@ def parse_transcript(obj: object) -> str:
             return value.strip()
     data = obj.get("data")
     if isinstance(data, dict):
-        for key in ("transcript", "text"):
+        for key in ("transcript", "text", "result"):
             value = data.get(key)
             if isinstance(value, str):
                 return value.strip()

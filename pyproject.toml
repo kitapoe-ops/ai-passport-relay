@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-passport-relay"
+version = "0.1.0"
+description = "FoloToy AI Passport (ESP32-C3) muse-relay voice pipeline"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.5"]
+
+[project.scripts]
+ai-passport-relay = "relay.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["relay*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
